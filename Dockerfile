@@ -22,5 +22,3 @@ RUN apt-get update && \
     echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
     echo 'USER="'${USER_NAME}'"; export USER' >> /home/${USER_NAME}/.bashrc && \
     echo 'USER="'${USER_NAME}'"; export USER' >> /home/${USER_NAME}/.profile
-
-USER ${USER_NAME}
