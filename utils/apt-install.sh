@@ -2,9 +2,10 @@
 
 # Runs standard updates/install/upgrade/cleanup sequence for docker
 
-# Requires root priveledges
-
-# All args are passed unmodified to apt-get install
+if [ "$#" -eq 0 ]; then
+    echo "usage: ${0} [options] [package names]"
+    exit 1
+fi
 
 apt-get update
 apt-get install -y "$@"
