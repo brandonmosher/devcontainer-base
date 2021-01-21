@@ -1,10 +1,10 @@
 #!/bin/sh
 
-#Standard updates/install/upgrade/cleanup sequence for docker
+# Runs standard updates/install/upgrade/cleanup sequence for docker
 
-#Requires root priveledges
+# Requires root priveledges
 
-#All args are passed unmodified to apt-get install
+# All args are passed unmodified to apt-get install
 
 apt-get update
 apt-get install -y "$@"
