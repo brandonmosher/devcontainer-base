@@ -9,10 +9,12 @@ ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=America/New_York
 ENV LANG=C.UTF-8
 ENV LC_ALL=C.UTF-8
-COPY scripts/*.sh /usr/local/bin/
+ENV DEV_BASE_UTILS_PATH=/usr/local/bin/dev-base-utils
+ENV PATH="${DEV_BASE_UTILS_PATH}:${PATH}"
 
-RUN chmod +x /usr/local/bin/apt-install-wrapper.sh /usr/local/bin/adduser-nopasswd-sudo.sh && \
-    apt-install-wrapper.sh sudo && \
+COPY utils/*.sh ${DEV_BASE_UTILS_PATH}/
+
+RUN apt-install-wrapper.sh sudo && \
 	adduser-nopasswd-sudo.sh ${USERNAME}
 
 USER ${USERNAME}
