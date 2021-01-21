@@ -11,7 +11,8 @@ ENV LANG=C.UTF-8
 ENV LC_ALL=C.UTF-8
 COPY scripts/*.sh /usr/local/bin/
 
-RUN apt-install-wrapper.sh sudo && \
+RUN chmod +x /usr/local/bin/apt-install-wrapper.sh /usr/local/bin/adduser-nopasswd-sudo.sh && \
+    apt-install-wrapper.sh sudo && \
 	adduser-nopasswd-sudo.sh ${USERNAME}
 
 USER ${USERNAME}
