@@ -6,7 +6,7 @@ if [ "$#" -eq 0 ]; then
     echo "usage: ${0} [options] [package names]"
     exit 1
 fi
-
+ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime
 apt-get update
 apt-get install -y "$@"
 apt-get dist-upgrade -y
