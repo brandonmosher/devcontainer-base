@@ -1,5 +1,5 @@
 FROM ubuntu
-LABEL maintainer="mosherbd@gmail.com"
+LABEL maintainer="code.brandon+docker@mosher.xyz"
 LABEL LABEL version="1.0"
 LABEL description="base development container image"
 
@@ -10,7 +10,6 @@ ENV TZ=America/New_York
 ENV LANG=C.UTF-8
 ENV LC_ALL=C.UTF-8
 ENV DEVCONTAINER_UTILS_PATH=/usr/local/bin
-#ENV PATH="${DEVCONTAINER_UTILS_PATH}:${PATH}"
 
 COPY utils/*.sh ${DEVCONTAINER_UTILS_PATH}/
 
