@@ -7,6 +7,7 @@ if [ "$#" -eq 0 ]; then
     exit 1
 fi
 ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime
+DEBIAN_FRONTEND=noninteractive
 apt-get update
 apt-get install -y "$@"
 apt-get dist-upgrade -y

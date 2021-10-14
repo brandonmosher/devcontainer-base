@@ -4,7 +4,6 @@ LABEL LABEL version="1.0"
 LABEL description="base development container image"
 
 ARG USERNAME="docker"
-ARG DEBIAN_FRONTEND=noninteractive
 
 ENV TZ=America/New_York
 ENV LANG=C.UTF-8
