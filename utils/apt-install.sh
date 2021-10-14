@@ -7,10 +7,9 @@ if [ "$#" -eq 0 ]; then
     exit 1
 fi
 ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime
-DEBIAN_FRONTEND=noninteractive
 apt-get update
-apt-get install -y "$@"
-apt-get dist-upgrade -y
+DEBIAN_FRONTEND=noninteractive apt-get install -y "$@"
+DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -y
 apt-get clean autoclean
 apt-get autoremove -y
 rm -rf /var/lib/apt/lists/*
