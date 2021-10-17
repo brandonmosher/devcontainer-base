@@ -5,9 +5,6 @@ LABEL description="base development container image"
 
 ARG USERNAME="docker"
 
-ENV TZ=America/New_York
-ENV LANG=C.UTF-8
-ENV LC_ALL=C.UTF-8
 ENV DEVCONTAINER_UTILS_PATH=/usr/local/bin
 
 COPY utils/*.sh ${DEVCONTAINER_UTILS_PATH}/
