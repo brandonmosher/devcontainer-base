@@ -7,9 +7,9 @@ ARG USERNAME="docker"
 
 ENV DEVCONTAINER_UTILS_PATH=/usr/local/bin
 
-COPY utils/*.sh ${DEVCONTAINER_UTILS_PATH}/
+COPY utils/* ${DEVCONTAINER_UTILS_PATH}/
 
-RUN apt-install.sh sudo && \
+RUN apt-helper sudo && \
 	adduser-nopasswd-sudo.sh ${USERNAME}
 
 USER ${USERNAME}
