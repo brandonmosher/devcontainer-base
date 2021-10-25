@@ -1,7 +1,6 @@
 {
     "build": {
-        "dockerfile": "Dockerfile",
-        "context": ".."
+        "dockerfile": "Dockerfile"
     },
     "extensions": ["vscjava.vscode-java-pack"]
 }

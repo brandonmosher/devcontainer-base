@@ -2,5 +2,5 @@
     "build": {
         "dockerfile": "Dockerfile"
     },
-    "extensions": []
+    "extensions": ["ms-python.python"]
 }

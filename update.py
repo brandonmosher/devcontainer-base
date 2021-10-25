@@ -6,6 +6,9 @@ from pathlib import Path
 import os
 from subprocess import Popen, PIPE
 
+update_build = set(Path('update_build').read_text().splitlines())
+update_push = set(Path('update_push').read_text().splitlines())
+
 dockerfilepaths = [Path(dfp) for dfp in glob.glob("./*/Dockerfile")]
 
 m = {}
@@ -22,7 +25,7 @@ for dockerfilepath in dockerfilepaths:
 
 completed = set()
 def build(target, tag):
-    if target in completed:
+    if (target in completed) or (target not in update_build):
         return
     if target in m:
         for dep in m[target]:
@@ -40,6 +43,9 @@ def build(target, tag):
     out = Path('{}.out'.format(target))
     out.open('wb').write(p.stderr.read())
     out.open('ab').write(p.stdout.read())
+    
+    if target not in update_push:
+        return
     
     cmd = 'docker push brandonmosher/devcontainer-{}:{}'.format(target, tag)
     print("Pushing {}...".format(target))
