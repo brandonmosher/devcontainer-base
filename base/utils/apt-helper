@@ -43,6 +43,12 @@ set -- "${PACKAGES[@]}"
 if run "update"; then
     echo "Updating..."
     apt-get update
+    # if [[ -n $(find /var/lib/apt/lists/ -maxdepth 0 -empty) ]]; then
+    #     echo "Updating..."
+    #     apt-get update
+    # else
+    #     echo "Already updated."
+    # fi
 fi
 
 if run "install"; then

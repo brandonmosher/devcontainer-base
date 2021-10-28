@@ -1,0 +1,3 @@
+from brandonmosher/devcontainer-node
+
+RUN npm-install.sh -g gulp

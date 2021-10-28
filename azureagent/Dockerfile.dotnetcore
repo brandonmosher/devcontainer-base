@@ -1,0 +1,11 @@
+FROM brandonmosher/devcontainer-azureagent
+
+WORKDIR /azp
+
+COPY dotnet/utils/ node/utils/ .
+
+RUN ./dotnet-install.sh && \
+    ./npm-install.sh -g gulp-cli && \
+    apt-helper --no-upgrade git
+
+ENTRYPOINT [ "azureagent-start.sh" ]

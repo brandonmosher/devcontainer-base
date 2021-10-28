@@ -5,11 +5,8 @@ LABEL LABEL version="1.0"
 LABEL description="node development container image"
 
 ENV NODE_VERSION node
+ENV NPM_VERSION latest
 
 COPY utils/* ${DEVCONTAINER_UTILS_PATH}/
 
-RUN sudo apt-helper --no-upgrade curl && \
-    . nvm-install.sh && \
-    . nvm-activate.sh && \
-    nvm install ${NODE_VERSION} && \
-    npm install -g npm@latest
+RUN npm-install.sh --node-version ${NODE_VERSION} --npm-version ${NPM_VERSION}

@@ -9,7 +9,7 @@ ENV DEVCONTAINER_UTILS_PATH=/usr/local/bin
 
 COPY utils/* ${DEVCONTAINER_UTILS_PATH}/
 
-RUN apt-helper sudo && \
+RUN apt-helper sudo curl && \
 	adduser-nopasswd-sudo.sh ${USERNAME}
 
 USER ${USERNAME}

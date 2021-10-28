@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 NVM_VERSION=$(curl -s https://api.github.com/repos/nvm-sh/nvm/tags | grep name -m 1 | xargs | cut -c7- | sed 's/,$//')
 
