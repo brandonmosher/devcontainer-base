@@ -1,7 +1,7 @@
 #!/bin/bash
 
 NODE_VERSION=node
-NPM_VERSION=latest
+NPM_VERSION=
 PACKAGES=()
 while [[ $# -gt 0 ]]; do
   key="$1"
@@ -24,9 +24,14 @@ while [[ $# -gt 0 ]]; do
 done
 
 . nvm-install.sh
+
 . nvm-activate.sh
+
 nvm install ${NODE_VERSION}
-npm install -g npm@${NPM_VERSION}
+
+if [[ ! -z ${NPM_VERSION} ]]; then
+  npm install -g npm@${NPM_VERSION}
+fi
 
 if [[ ${#PACKAGES[@]} -gt 0 ]]; then
   npm install "${PACKAGES[@]}"

@@ -23,8 +23,10 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
+IMPLICIT_ALL=
+
 run () {
-    (([[ -n ${IMPLICIT_ALL} ]] || [[ " ${RUN_STAGES[*]} " =~ " ${1} " ]]) && ! [[ " ${SKIP_STAGES[*]} " =~ " ${1} " ]]) && return 0
+    (([[ -n ${IMPLICIT_ALL} ]] || [[ " ${RUN_STAGES[*]} " =~ " ${1} " ]]) && (! [[ " ${SKIP_STAGES[*]} " =~ " ${1} " ]])) && return 0
     return -1
 }
 
@@ -40,7 +42,7 @@ fi
 
 set -- "${PACKAGES[@]}"
 
-if run "update"; then
+if run update; then
     echo "Updating..."
     apt-get update
     # if [[ -n $(find /var/lib/apt/lists/ -maxdepth 0 -empty) ]]; then
@@ -51,17 +53,17 @@ if run "update"; then
     # fi
 fi
 
-if run "install"; then
+if run install; then
     echo "Installing..."
     DEBIAN_FRONTEND=noninteractive apt-get install -y "$@"
 fi
 
-if run "upgrade"; then
+if run upgrade; then
     echo "Upgrading..."
     DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -y
 fi
 
-if run "clean"; then
+if run clean; then
     echo "Cleaning..."
     apt-get clean autoclean
     apt-get autoremove -y

@@ -1,0 +1,2 @@
+- Set standard BASH_ENV for devcontainer-base?
+- Include build-essential and python2 dependencies for node gyp in devcontainer-node?

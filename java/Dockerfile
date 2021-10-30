@@ -14,6 +14,6 @@ ARG VERSION_CONTROL=git
 
 COPY utils/* ${DEVCONTAINER_UTILS_PATH}/
 
-RUN sudo apt-helper --no-upgrade zip unzip curl gpg ${VERSION_CONTROL} && \
+RUN sudo apt-helper --no-upgrade zip unzip gpg ${VERSION_CONTROL} && \
     sdk-install.sh ${JAVA_VERSION} ${ANT_VERSION} ${MAVEN_VERSION} ${GRADLE_VERSION} && \
     ivy-install.sh ${IVY_VERSION} ${IVY_JAR_DEST_FILEPATH}

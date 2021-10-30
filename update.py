@@ -35,7 +35,7 @@ def build(target, tag):
     p = Popen([
         'docker',
         'build',
-        # '--no-cache',
+        '--no-cache',
         '-t',
         'brandonmosher/devcontainer-{}:{}'.format(target, tag),
         Path(target).resolve()

@@ -3,20 +3,18 @@ FROM brandonmosher/devcontainer-base
 ARG TARGETARCH=amd64
 ARG AGENT_VERSION=2.185.1
 
-USER root
-
-WORKDIR /azp
+WORKDIR /home/docker/azp
 
 COPY utils/* ${DEVCONTAINER_UTILS_PATH}/
 
-RUN curl -LsS https://aka.ms/InstallAzureCLIDeb | bash && \
+RUN curl -LsS https://aka.ms/InstallAzureCLIDeb | sudo bash && \
     if [ "$TARGETARCH" = "amd64" ]; then \
       AZP_AGENTPACKAGE_URL=https://vstsagentpackage.azureedge.net/agent/${AGENT_VERSION}/vsts-agent-linux-x64-${AGENT_VERSION}.tar.gz; \
     else \
       AZP_AGENTPACKAGE_URL=https://vstsagentpackage.azureedge.net/agent/${AGENT_VERSION}/vsts-agent-linux-${TARGETARCH}-${AGENT_VERSION}.tar.gz; \
     fi; \
     curl -LsS "$AZP_AGENTPACKAGE_URL" | tar -xz; \
-    ./bin/installdependencies.sh && \
-    apt-helper --clean
+    sudo ./bin/installdependencies.sh && \
+    sudo apt-helper --clean
 
-ENTRYPOINT [ "azureagent-start.sh" ]
+ENTRYPOINT [ "bash", "-c", "azureagent-start.sh" ]

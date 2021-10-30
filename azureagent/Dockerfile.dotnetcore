@@ -1,11 +1,13 @@
 FROM brandonmosher/devcontainer-azureagent
 
-WORKDIR /azp
+ENV BASH_ENV=/etc/profile
+ENV NODE_VERSION=15
+
+ARG NODE_GYP_DEPENDENCIES="python2 build-essential"
 
 COPY dotnet/utils/ node/utils/ .
+COPY node/utils/nvm-activate.sh /etc/profile.d
 
-RUN ./dotnet-install.sh && \
-    ./npm-install.sh -g gulp-cli && \
-    apt-helper --no-upgrade git
-
-ENTRYPOINT [ "azureagent-start.sh" ]
+RUN sudo ./dotnet-install.sh && \
+    ./npm-install.sh --node-version ${NODE_VERSION} && \
+    sudo apt-helper --no-upgrade git ${NODE_GYP_DEPENDENCIES}
